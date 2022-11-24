@@ -9,7 +9,7 @@ Switch to new Branche
 ### `git switch -c  Nom_De_Branch `
 
 add commit
-### `git add ." `
+### `git add .`
 
 ### `git commit -m  "commentaire de commit" `
 
