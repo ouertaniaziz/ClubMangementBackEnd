@@ -21,4 +21,7 @@ public class Sponsor {
     private String labelle;
     private Integer montant;
 
+    @ManyToOne
+    Event event;
+
 }
