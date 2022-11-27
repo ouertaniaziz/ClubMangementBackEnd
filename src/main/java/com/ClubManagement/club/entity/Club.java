@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -23,4 +24,13 @@ public class Club {
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date_creation;
+
+    @ManyToOne
+    Universite universite;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "club")
+    private Set<Membre> membreSet;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Event> eventSet;
 }
