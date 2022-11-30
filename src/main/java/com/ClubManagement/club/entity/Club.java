@@ -20,7 +20,7 @@ public class Club {
     private int id_club;
     @Enumerated(EnumType.STRING)
     private Specialite specialite;
-    private String nom_club;
+    private String nomdeclub;
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date_creation;
