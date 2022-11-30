@@ -10,13 +10,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/membre")
+@CrossOrigin(origins = {"*"})
 public class MembreClass {
     @Autowired
     private InterfaceMembre interfaceMembre;
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public Membre save(@RequestBody Membre membre) throws Exception {
-        Membre membre1 =  interfaceMembre.save(membre);
+    @RequestMapping(value = "/save/{nom}", method = RequestMethod.POST)
+    public Membre save(@RequestBody Membre membre,@PathVariable(value = "nom")String nom_club) throws Exception {
+        Membre membre1 =  interfaceMembre.saveit(membre,nom_club);
         return membre1;
     }
     @RequestMapping(value = "/all", method = RequestMethod.GET)

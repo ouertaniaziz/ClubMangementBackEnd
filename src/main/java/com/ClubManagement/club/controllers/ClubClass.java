@@ -53,7 +53,7 @@ public class ClubClass {
                 return "Club not found with id :";
             }
             updateClub.setSpecialite(c.getSpecialite());
-            updateClub.setNom_club(c.getNom_club());
+            updateClub.setNomdeclub(c.getNomdeclub());
             updateClub.setDescription(c.getDescription());
             updateClub.setDate_creation(c.getDate_creation());
             serviceClub.update(updateClub);
