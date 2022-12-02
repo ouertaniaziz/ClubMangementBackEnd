@@ -65,4 +65,9 @@ public class MembreClass {
         }
         return "Membre modifié ";
     }
+    @RequestMapping(value = "/nomclubs", method = RequestMethod.GET)
+    public List<String> getclubs(){
+        return  interfaceMembre.getclubs();
+
+    }
 }
