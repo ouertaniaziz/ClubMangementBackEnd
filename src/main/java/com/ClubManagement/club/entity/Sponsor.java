@@ -19,6 +19,7 @@ public class Sponsor {
     @Enumerated(EnumType.STRING)
     private CategorieSponsor categorieSponsor;
     private String labelle;
+    private String email;
     private Integer montant;
 
 }
