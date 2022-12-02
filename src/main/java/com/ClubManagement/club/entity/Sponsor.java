@@ -22,4 +22,7 @@ public class Sponsor {
     private String email;
     private Integer montant;
 
+    @ManyToOne
+    Event event;
+
 }

@@ -5,11 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -25,5 +23,11 @@ public class Event {
     private Date date_debut_Event;
     private Date date_fin_Event;
     private String Description ;
+
+    @ManyToMany(mappedBy = "eventSet",cascade = CascadeType.ALL)
+    private Set<Club> clubSet;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "event")
+    private Set<Sponsor> sponsorSet;
 
 }
