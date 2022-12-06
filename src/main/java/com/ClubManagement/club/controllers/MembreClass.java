@@ -46,10 +46,10 @@ public class MembreClass {
         }
         return     ResponseEntity.ok(membre);
     }
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.PUT)
-    public String updatemembre(@RequestBody Membre membre,@PathVariable int id) {
+    @RequestMapping(value = "/edit", method = RequestMethod.PUT)
+    public String updatemembre(@RequestBody Membre membre) {
         try {
-            Membre updatemembre= interfaceMembre.retrieve(id);
+            Membre updatemembre= interfaceMembre.retrieve(membre.getId_M());
             if (updatemembre==null){
                 return "Membre not found with id :";
             }
@@ -57,6 +57,7 @@ public class MembreClass {
             updatemembre.setPrenom_M(membre.getPrenom_M());
             updatemembre.setEmail(membre.getEmail());
             updatemembre.setNum_M(membre.getNum_M());
+            updatemembre.setRole(membre.getRole());
             interfaceMembre.update(updatemembre);
 
 
