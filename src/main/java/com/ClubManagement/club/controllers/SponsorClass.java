@@ -9,12 +9,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/sponsor")
+@CrossOrigin(origins = {"*"})
 public class SponsorClass {
 
     @Autowired
     private ImpServiceSponsor serviceSponsor;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @CrossOrigin(origins = {"*"})
     public Sponsor save(@RequestBody Sponsor Spon) throws Exception {
         Sponsor SponsorResponse = (Sponsor) serviceSponsor.save(Spon);
         return SponsorResponse;
