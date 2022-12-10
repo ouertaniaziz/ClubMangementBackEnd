@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/event")
+@CrossOrigin(origins = {"*"})
 public class EventClass {
 
     @Autowired
@@ -44,7 +45,7 @@ public class EventClass {
          Event EventResponse =(Event)  serviceEvent.retrieve(id);
          return EventResponse;
 }
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
       public String UpdateEvent (@RequestBody Event event,@PathVariable int id ){
         try{
             Event updateEvent=serviceEvent.retrieve(id);

@@ -19,9 +19,9 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id_E;
-    private String  NomEvent;
-    private Date date_debut_Event;
-    private Date date_fin_Event;
+    private String  nomEvent;
+    private String date_debut_Event;
+    private String date_fin_Event;
     private String Description ;
 
     @ManyToMany(mappedBy = "eventSet",cascade = CascadeType.ALL)

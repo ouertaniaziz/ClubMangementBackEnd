@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/sponsor")
+@CrossOrigin(origins = {"*"})
 public class SponsorClass {
 
     @Autowired
