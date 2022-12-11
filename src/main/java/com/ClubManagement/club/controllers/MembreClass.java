@@ -1,8 +1,12 @@
 package com.ClubManagement.club.controllers;
 
+import com.ClubManagement.club.entity.Mailingcontent;
 import com.ClubManagement.club.entity.Membre;
+import com.ClubManagement.club.repository.MailingRepo;
 import com.ClubManagement.club.services.membre.InterfaceMembre;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +18,8 @@ import java.util.List;
 public class MembreClass {
     @Autowired
     private InterfaceMembre interfaceMembre;
+    @Autowired
+    private  MailingRepo mailingRepo;
 
     @RequestMapping(value = "/save/{nom}", method = RequestMethod.POST)
     public Membre save(@RequestBody Membre membre,@PathVariable(value = "nom")String nom_club) throws Exception {
@@ -70,5 +76,30 @@ public class MembreClass {
     public List<String> getclubs(){
         return  interfaceMembre.getclubs();
 
+    }
+   /* @PutMapping("/mailTo")
+    @EventListener(ApplicationReadyEvent.class)
+    public void  sendEmail(){
+        interfaceMembre.sendEmail("houssembalti.de@gmail.com",
+                "Test",
+                "this is a test!");
+    }*/
+    @PutMapping("/mail")
+
+    public ResponseEntity<?> sendEmail(@RequestBody Mailingcontent mailingcontent){
+
+
+            interfaceMembre.sendEmail(mailingcontent.getToEmail(),
+                    mailingcontent.getSubject(),
+                    mailingcontent.getBody());
+
+
+
+
+        return ResponseEntity.ok("email has been sent !");
+    }
+    @GetMapping("/history/{toemail}")
+    public  List<Mailingcontent> gethistory(@PathVariable(value = "toemail")  String toemail){
+        return interfaceMembre.gethistory(toemail);
     }
 }
