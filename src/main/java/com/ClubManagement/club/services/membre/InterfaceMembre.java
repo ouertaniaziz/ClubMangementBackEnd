@@ -1,5 +1,4 @@
 package com.ClubManagement.club.services.membre;
-
 import com.ClubManagement.club.entity.Mailingcontent;
 import com.ClubManagement.club.entity.Membre;
 import com.ClubManagement.club.generic.InterfaceGeneric;
