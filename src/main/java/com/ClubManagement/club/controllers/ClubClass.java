@@ -1,13 +1,18 @@
 package com.ClubManagement.club.controllers;
 
 import com.ClubManagement.club.entity.Club;
+import com.ClubManagement.club.entity.Event;
 import com.ClubManagement.club.services.club.ImpServiceClub;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping(value = "/club")
 public class ClubClass {
     @Autowired
@@ -29,7 +34,7 @@ public class ClubClass {
         return null;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public String deleteClub(@PathVariable int id) {
         try {
             serviceClub.delete(id);
@@ -46,22 +51,34 @@ public class ClubClass {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.PUT)
-    public String UpdateClub(@RequestBody Club c,@PathVariable int id) {
-        try {
-            Club updateClub= serviceClub.retrieve(id);
+    public String UpdateClub(@RequestBody Club c, @PathVariable int id) {
+        try{
+            Club updateClub=serviceClub.retrieve(id);
             if (updateClub==null){
                 return "Club not found with id :";
             }
+
+
+            updateClub .setNomdeclub(c.getNomdeclub());
             updateClub.setSpecialite(c.getSpecialite());
-            updateClub.setNomdeclub(c.getNomdeclub());
             updateClub.setDescription(c.getDescription());
             updateClub.setDate_creation(c.getDate_creation());
             serviceClub.update(updateClub);
 
-
-        } catch (Exception err) {
+        }catch (Exception err) {
             throw new RuntimeException(err);
         }
         return "Club modifié ";
     }
+
+    @RequestMapping(value="/getClubsByUniv/{idUniv}", method = RequestMethod.GET)
+    public Set<Club> retrieveDepartementByUniversity(@PathVariable Integer idUniv){
+        return serviceClub.getClubsByUniversite(idUniv);
+    }
+
+    @RequestMapping(value = "/assign/{idUniv}/{id_club}", method = RequestMethod.POST)
+        public void addAndAssignClub(@PathVariable int idUniv, @PathVariable int id_club) {
+            serviceClub.assignUniversiteToClub(idUniv,id_club);
+        }
+
 }

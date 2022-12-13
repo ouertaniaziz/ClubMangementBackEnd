@@ -22,7 +22,7 @@ public class Club {
     private Specialite specialite;
     private String nomdeclub;
     private String description;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date date_creation;
 
     @ManyToOne
@@ -33,4 +33,5 @@ public class Club {
 
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Event> eventSet;
+
 }
