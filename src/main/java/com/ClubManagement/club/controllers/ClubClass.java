@@ -1,11 +1,9 @@
 package com.ClubManagement.club.controllers;
 
 import com.ClubManagement.club.entity.Club;
-import com.ClubManagement.club.entity.Event;
+
 import com.ClubManagement.club.services.club.ImpServiceClub;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
