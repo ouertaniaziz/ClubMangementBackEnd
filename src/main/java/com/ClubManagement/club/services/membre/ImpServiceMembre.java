@@ -71,8 +71,10 @@ public class ImpServiceMembre extends ImplementationGeneric<Membre,Integer> impl
     }
 
     @Override
-    public  List<Mailingcontent> gethistory(String toemail) {
-        List<Mailingcontent> mailingcontents = mailingRepo.getAllByToEmail(toemail);
+    public  List<Mailingcontent> gethistory(int a) {
+        Membre m = membreRepository.findById(a).orElse(null);
+
+        List<Mailingcontent> mailingcontents = mailingRepo.getAllByToEmail(m.getEmail());
         return mailingcontents;
 
     }
