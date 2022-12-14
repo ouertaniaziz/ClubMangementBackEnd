@@ -4,6 +4,7 @@ import com.ClubManagement.club.entity.Mailingcontent;
 import com.ClubManagement.club.entity.Membre;
 import com.ClubManagement.club.repository.MailingRepo;
 import com.ClubManagement.club.services.membre.InterfaceMembre;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Slf4j
 @RequestMapping("/membre")
 @CrossOrigin(origins = {"*"})
 public class MembreClass {
@@ -59,6 +61,7 @@ public class MembreClass {
             if (updatemembre==null){
                 return "Membre not found with id :";
             }
+            log.info("{}",membre.getId_M()  );
                 updatemembre.setNom_M(membre.getNom_M());
             updatemembre.setPrenom_M(membre.getPrenom_M());
             updatemembre.setEmail(membre.getEmail());
@@ -98,8 +101,8 @@ public class MembreClass {
 
         return ResponseEntity.ok("email has been sent !");
     }
-    @GetMapping("/history/{toemail}")
-    public  List<Mailingcontent> gethistory(@PathVariable(value = "toemail")  String toemail){
-        return interfaceMembre.gethistory(toemail);
+    @GetMapping("/history/{id}")
+    public  List<Mailingcontent> gethistory(@PathVariable(value = "id")  int id){
+        return interfaceMembre.gethistory(id);
     }
 }

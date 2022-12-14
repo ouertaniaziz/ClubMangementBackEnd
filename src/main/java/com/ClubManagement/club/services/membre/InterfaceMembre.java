@@ -15,5 +15,5 @@ public interface InterfaceMembre  extends InterfaceGeneric<Membre,Integer> {
                           String Subject,
                           String body);
 
-    public  List<Mailingcontent> gethistory(String toemail);
+    public  List<Mailingcontent> gethistory(int  a);
 }
